@@ -33,3 +33,8 @@ Moreover, during the preprocessing could be useful to add a new column "ID" to d
 
 I didn't have any issue about RAM or any needs to parallel the preprocessing.java script to filter the database.
 The filtered database is **2.6 GB**, I hope to have no issues when I will use it to build the graph.
+
+
+## 16/05/2020 - minor improvements and starting the graph
+
+I need to improve the **preprocessing step** creating a "converter" for the identifiers to integers.
