@@ -38,3 +38,9 @@ The filtered database is **2.6 GB**, I hope to have no issues when I will use it
 ## 16/05/2020 - minor improvements and starting the graph
 
 I need to improve the **preprocessing step** creating a "converter" for the identifiers to integers.
+
+
+## 17/05/2020 - reuse Graph and GraphIO classes
+
+I think that we can use the classes GraphIO and Graph as code base, so I will improve the preprocessing script to generate an adjacency list in a text file, so a file with only IDs.
+
