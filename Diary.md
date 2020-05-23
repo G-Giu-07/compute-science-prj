@@ -54,3 +54,32 @@ There are **8 million of nodes** and **22 million of edges**.
 
 I get the guess about the node degree distribution average plotting the degree distribution of a sample (db), using **show_degree_dist.py**, just to view the data in a better way.
 
+
+## 23/05/2020 - component graph
+
+Investigating about DFS vs BFS complexity they seem really the same, they are equivalent, but about the graph structure and the average cases the DFS seems to be faster than BFS.
+
+Probably, if I need to find a node in a graph where there are several graph components and these components are strongly conneccted (like in a social network), the BFS is better to find this node.
+In reverse, if I need to find a "lonely node" which is not connected to others, DFS could be the better solution.
+
+Moreover, DFS generally requires less memory than BFS, in this case I need to work on a really big graph, so DFS is a good choice.
+
+Well, about the current graph, we have the following degree distribution.
+
+| degrees prob. | nodes   | 
+|---------------| ------- |
+| 0.0           | 7976587 |
+| 0.1           | 61011   |
+| 0.3           | 11738   |
+| 0.2           | 30308   |
+| 0.4           | 3466    |
+| 0.6           | 301     |
+| 0.5           | 716     |
+| 0.7           | 210     |
+| 0.8           | 88      |
+| 0.9           | 28      |
+| 1.0           | 5       |
+
+**Note:** with **"0.0"** I count all the nodes with degree prob. **0.0*** value.
+
+So, probably the nodes are not so strongly connected, indeed, the DFS also under this aspect seems to be the choice for this.
