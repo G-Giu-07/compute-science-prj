@@ -52,3 +52,5 @@ The **maximum degree** is **968**.
 Several node degree is about **1/968**, because several nodes have only one edge.
 There are **8 million of nodes** and **22 million of edges**.
 
+I get the guess about the node degree distribution average plotting the degree distribution of a sample (db), using **show_degree_dist.py**, just to view the data in a better way.
+
