@@ -5,7 +5,7 @@ from math import log
 
 print("## reading file")
 
-file = open("sample_output/sample_degree_distributions.txt", "r")
+file = open("../sample_output/sample_degree_distributions.txt", "r")
 
 lines = file.read().splitlines()
 
