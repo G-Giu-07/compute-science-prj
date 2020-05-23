@@ -43,11 +43,33 @@ class Graph  {
     System.out.println("N: " + this.N);
   }
 
+  public void getDegreeDistribution() {
+    int maxDegree = 0;
+    float[] graphDegrees = new float[this.adjList.size()];
+
+    for (int i = 0; i < this.adjList.size(); i++) {
+      graphDegrees[i] = (float)this.adjList.get(i).size();
+
+      if (maxDegree < graphDegrees[i]) {
+        maxDegree = (int)graphDegrees[i];
+      }
+    }
+
+    for (int i = 0; i < graphDegrees.length; i++) {
+      graphDegrees[i] = graphDegrees[i] / (float)maxDegree;
+      System.out.println(graphDegrees[i]);
+    }
+
+    // System.out.println("######");
+    // System.out.println(maxDegree);
+  }
+
   public static void main(String[] args) {
 
     Graph g = GraphIO.read("only_IDs.txt");
 
     // g.printGraph();
+    // g.getDegreeDistribution();
   }
 
 }
