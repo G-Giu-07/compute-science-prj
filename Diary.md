@@ -44,3 +44,11 @@ I need to improve the **preprocessing step** creating a "converter" for the iden
 
 I think that we can use the classes GraphIO and Graph as code base, so I will improve the preprocessing script to generate an adjacency list in a text file, so a file with only IDs.
 
+## 22/05/2020 - degree distribution
+
+Extracted the values of the degree distribution, I can see that they are really small with the sample database. Probably, they will be smaller using the biggest one.
+
+The **maximum degree** is **968**.  
+Several node degree is about **1/968**, because several nodes have only one edge.
+There are **8 million of nodes** and **22 million of edges**.
+
