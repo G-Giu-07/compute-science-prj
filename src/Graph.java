@@ -64,12 +64,115 @@ class Graph  {
     // System.out.println(maxDegree);
   }
 
-  public static void main(String[] args) {
+  /* 
+   * BFS
+   */
+  public void BFS() {
+    boolean visited[] = new boolean[this.N];
+    LinkedList<Integer> queue = new LinkedList<Integer>();
+    int connectedComponents = 0;
+    
 
-    Graph g = GraphIO.read("only_IDs.txt");
+    for (int i = 0; i < this.adjList.size(); i++) {
+
+      if (!visited[i]) {
+        int sizeComponent = 0;
+
+        visited[i] = true;
+        queue.add(i);
+
+        while (queue.size() != 0) {
+          int tmp = queue.pop();
+          Iterator<Integer> idx = this.adjList.get(tmp).listIterator();
+
+          while (idx.hasNext()) {
+            int n = idx.next();
+
+            if (!visited[n] || visited[n] == false) {
+              visited[n] = true;
+              queue.add(n);
+
+              sizeComponent++;
+            }
+          }
+        }
+
+        System.out.println(sizeComponent);
+        connectedComponents++;
+      }
+    }
+
+    System.out.println("#################");
+    System.out.println(connectedComponents);
+  }
+
+  /* 
+   * DFS
+   */
+  void DFS()  {
+    boolean[] visited = new boolean[this.N];
+    LinkedList<Integer> stack = new LinkedList<Integer>();
+
+    int connectedComponents = 0;
+
+    for (int i = 0; i < this.adjList.size(); i++) {
+
+      if (!visited[i]) {
+        int sizeComponent = 0;
+
+        int s = i;
+        stack.push(s);
+
+        while (stack.size() != 0) {
+          s = stack.peek();
+          stack.pop();
+            
+          if (!visited[s]) {
+            visited[s] = true;
+          }
+
+          Iterator<Integer> itr = this.adjList.get(s).iterator();
+            
+          /* LOOP here? */
+          while (itr.hasNext()) {
+            int v = itr.next();
+            if (!visited[v] && !stack.contains(v)) {
+              sizeComponent++;
+              stack.push(v);
+              visited[v] = true;
+            }
+          }
+        }
+
+        // System.out.println(sizeComponent);
+        connectedComponents++;
+      }
+    }
+
+    System.out.println();
+    System.out.println("#################");
+    System.out.println(connectedComponents);
+  } 
+
+
+  public static void main(String[] args) {
+    Graph g = GraphIO.read(args[0]);
 
     // g.printGraph();
     // g.getDegreeDistribution();
+    // g.BFS();
+    // g.DFS();
+
+    System.out.println("# Starting algorithm");
+
+    long startTime = System.currentTimeMillis();
+
+    g.DFS();
+
+    long endTime = System.currentTimeMillis();
+    System.out.println("Algorithm time: " + (endTime - startTime) + " milliseconds");
+    System.out.print("Memory: ");
+    System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
   }
 
 }
