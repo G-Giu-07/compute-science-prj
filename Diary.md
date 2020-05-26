@@ -83,3 +83,41 @@ Well, about the current graph, we have the following degree distribution.
 **Note:** with **"0.0"** I count all the nodes with degree prob. **0.0*** value.
 
 So, probably the nodes are not so strongly connected, indeed, the DFS also under this aspect seems to be the choice for this.
+
+
+## 26/05/2020 - component graph
+
+---  
+
+I tried the DFS algorithm recursively, it worked with the sample, but I met the **stackoverflow** error with the entire DB, so I implemented an iterative one.
+
+### Benchmark / Case-study about the efficiency
+
+Tests with sample database:
+
+|   #     | BFS       | DFS     |
+|---------|-----------|---------|
+| time    | 3 ms      | 3 ms    |
+| memory  | 5424712   | 5424688 |  
+
+
+Tests with the entire database:
+
+|   #     | BFS          | DFS     |
+|---------|--------------|---------|
+| time    | 6037 ms      |  |
+| memory  | 3554873344   |  |  
+
+
+### Data results
+
+Number of components: 961874
+Components size (in the graph)  
+
+![component_size](src/entire_database/component_size_entire_db.png)
+
+
+In the graph are showed the component graph with 1 as size to 60+ size.
+As a result, we can evince that the most components have 1-3 as size, more is the size less graph component we have in the graph.
+All the graph component size is stored in **component_size_entire_DB.txt**.
+
