@@ -133,13 +133,11 @@ class Graph  {
 
           Iterator<Integer> itr = this.adjList.get(s).iterator();
             
-          /* LOOP here? */
           while (itr.hasNext()) {
             int v = itr.next();
             if (!visited[v] && !stack.contains(v)) {
               sizeComponent++;
               stack.push(v);
-              visited[v] = true;
             }
           }
         }
@@ -167,7 +165,7 @@ class Graph  {
 
     long startTime = System.currentTimeMillis();
 
-    g.DFS();
+    g.BFS();
 
     long endTime = System.currentTimeMillis();
     System.out.println("Algorithm time: " + (endTime - startTime) + " milliseconds");
