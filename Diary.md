@@ -111,13 +111,13 @@ Tests with the entire database:
 
 ### Data results
 
-Number of components: 961874
+Number of components: 961874  
 Components size (in the graph)  
 
 ![component_size](src/entire_database/component_size_entire_db.png)
 
 
-In the graph are showed the component graph with 1 as size to 60+ size.
-As a result, we can evince that the most components have 1-3 as size, more is the size less graph component we have in the graph.
+In the graph are showed the component graph with 1 as size to 60+ size.  
+As a result, we can evince that the most components have 1-3 as size, more is the size less graph component we have in the graph.  
 All the graph component size is stored in **component_size_entire_DB.txt**.
 
