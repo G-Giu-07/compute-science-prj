@@ -103,11 +103,10 @@ Tests with sample database:
 
 Tests with the entire database:
 
-|   #     | BFS          | DFS     |
-|---------|--------------|---------|
-| time    | 6037 ms      |  |
-| memory  | 3554873344   |  |  
-
+|   #     | BFS          | DFS        |
+|---------|--------------|------------|
+| time    | 6037 ms      | 4903570 ms |
+| memory  | 3554873344   | 2230251168 |  
 
 ### Data results
 
