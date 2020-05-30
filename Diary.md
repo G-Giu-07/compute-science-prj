@@ -59,7 +59,7 @@ I get the guess about the node degree distribution average plotting the degree d
 
 Investigating about DFS vs BFS complexity they seem really the same, they are equivalent, but about the graph structure and the average cases the DFS seems to be faster than BFS.
 
-Probably, if I need to find a node in a graph where there are several graph components and these components are strongly conneccted (like in a social network), the BFS is better to find this node.
+Probably, if I need to find a node in a graph where there are several graph components and these components are strongly connected (like in a social network), the BFS is better to find this node.
 In reverse, if I need to find a "lonely node" which is not connected to others, DFS could be the better solution.
 
 Moreover, DFS generally requires less memory than BFS, in this case I need to work on a really big graph, so DFS is a good choice.
@@ -116,7 +116,7 @@ Components size (in the graph)
 ![component_size](src/entire_database/component_size_entire_db.png)
 
 
-In the graph are showed the component graph with 1 as size to 60+ size.  
+In the graph are shown the component graph with 1 as size to 60+ size.  
 As a result, we can evince that the most components have 1-3 as size, more is the size less graph component we have in the graph.  
 All the graph component size is stored in **component_size_entire_DB.txt**.
 
