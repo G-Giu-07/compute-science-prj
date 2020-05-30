@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{listings}
+
+\title{A genome assembly graph \\ Project Report}
+\author{Giulia Grasso}
+\date{May 2020}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This project consists in analyzing a dataset containing data regarding DNA's segments, called \textbf{contigs}.
+\newline
+In order to do this, it is created a graph G, based on the given dataset, and analyzed the following aspects:
+\begin{itemize} 
+    \item the node degree distribution of G;
+    \item the number of components of G;
+    \item the component size distribution of G.
+\end{itemize}
+
+\section{Unix Tools}
+The given database is about 7 GB, hence it is important to create a sample and do some tests on it. For this reason, it was used the Unix command \textbf{head}, which allows to take the first lines of the database. In particular, it was used with the following command:
+\begin{equation*}
+    head \ \  -2000 \ \  db.m4 \ \  > \ \ sample.m4
+\end{equation*}
+which stores the first 2000 lines of the database into a file called \textbf{sample.m4}.
+
+\section{Use of Git and GitHub}
+\textbf{Git} was used to track all versions of the project with daily commits. 
+\newline
+The description of the used commits is based on \emph{commits conventional}, with the following structure: 
+\begin{itemize} 
+    \item \textbf{feat(FEATURE)}: feature description implemented;
+    \item \textbf{chore(SUBJECT)}: minor improvements related to a subject;
+    \item \textbf{doc(DIARY)}: description of the related documentation added;
+    \item \textbf{tests(DATABASE)}: any commit about the database or sample database.
+\end{itemize}
+\textbf{GitHub} has been used to store the project in the cloud and the related git log and software versions.
+\newpage
+
+\section{Pre-processing}
+Firstly, it was observed that the given database is about 7 GB, hence it was implemented an algorithm in order to filter the database,  creating a smaller database with only the data which are relevant for the project, i.e. the contigs' overlaps which are not entirely contained.
+\newline
+\\
+The implemented algorithm, first was tested on the sample and then, after checking its functionality, was used into the entire database, producing a file of 2.6 GB in which there are \textbf{8 millions nodes} and \textbf{22 millions edges}.
+\newline
+\\
+Moreover, during the pre-processing phase, the identifiers were mapped with auto-increment ID, hence there are been added two columns to the database and created a new file with only these two columns.
+\newline
+This file represents the adjacency list of the graph and it will be used by the class GraphIO, which was implemented for lab5.
+
+\section{Node degree distribution}
+It was implemented an algorithm  which calculate the node degree based on the formula:
+\begin{equation*}
+    {node \ \ degree \over{max \ \ degree}}
+\end{equation*}
+where the degree of a node is the related node's amount of edges, which means that:
+\begin{equation*}
+    P(node\_degree) = {\sum {edges \ of \ a \  node \over{max \ \ degree}}}
+\end{equation*}
+Note that in the sample database, the maximum degree is \textbf{968}.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Degrees Probability} & \textbf{Nodes} \\
+        \hline
+        0.0 & 7976587 \\
+        \hline
+        0.1 & 61011\\
+        \hline
+        0.3 & 11738 \\
+        \hline
+        0.2	& 30308 \\
+        \hline
+        0.4	& 3466 \\
+        \hline
+        0.6	& 301 \\
+        \hline
+        0.5	& 716 \\
+        \hline
+        0.7	& 210 \\
+        \hline
+        0.8	& 88 \\
+        \hline
+        0.9	& 28 \\
+        \hline
+        1.0 & 5 \\
+        \hline
+    \end{tabular}
+    \caption{Nodes degree per degree probability in the entire database}
+\end{table}
+\textbf{Note} that "0.0" stands for all the nodes with degree probability less than 0.0*, which is not 0.
+\newline
+To analyze the results of the degree distribution in the sample, it was implemented a python script to show an histogram with the node degree distribution (show\_degree\_dist.py).
+\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=8cm]{degree_distirbution_histogram.png}
+    \caption{Histogram of degree distribution in the sample}
+\end{figure}
+\newline
+It is possible to notice, from the histogram, that several nodes (of the sample database) have a low degree probability, which is similar to the entire database degree distribution.
+
+\section{Graph components and component size distribution}
+In order to compute the number of graph components and its related size distribution, there were considered the two algorithms \textbf{BFS} and \textbf{DFS}.
+\newline
+\\
+Based on several researches and detailed studies, it is given that the two algorithms are almost equal in terms of time and space complexity, hence the main difference is given by the structure of the graph.
+\newline
+\\
+To do a more accurate study for better understand which algorithm is more suitable for the given database, it was decided to apply both algorithms and checked the time complexity and the memory that is used for both.
+\newline
+Using the BFS, implemented in previous lab, and a recursive version of DFS with the sample database, there were obtained the following results:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+          & \textbf{BFS} & \textbf{DFS} \\
+         \hline
+         \textbf{time} & 3 \ ms & 3 \ ms \\
+         \hline
+         \textbf{memory} & 5424712 & 5424688 \\
+         \hline
+    \end{tabular}
+\end{table}
+Using the recursive DFS with the entire database, it was found the stackoverflow error, that was solved implementing the iterative version of DFS.
+\newline
+Hence, applying both algorithms in the entire database, there were obtained:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+          & \textbf{BFS} & \textbf{DFS} \\
+         \hline
+         \textbf{time} & 6037 \ ms & 4903570 \ ms \\
+         \hline
+         \textbf{memory} & 3554873344 & 2230251168 \\
+         \hline
+    \end{tabular}
+\end{table}
+From these results, it can be observed that with the given database, BFS is faster than DFS but using more memory, while DFS uses less memory but it is \textbf{hugely slower}.
+\newline
+Thus, the number of components which is found is \textbf{961874} and the related component size per graph of all components is stored in the file \emph{component\_size\_entire\_DB.txt}.
+\newline
+Furthermore, it was implemented a python script to show the graph components size distribution in a histogram:
+\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=6cm]{component_size_entire_db.png}
+    \caption{Histogram of graph component size distribution in the database}
+\end{figure}
+\newline
+As a result, it can be evinced that most of the components have 1-3 as size, and, by the increasing of their node size, there is a decreasing of related graph component in the graph.  
+
+\end{document}
